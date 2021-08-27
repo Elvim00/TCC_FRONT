@@ -1,5 +1,5 @@
 import React from "react"
-import Login from './index' 
+import Login from './login' 
 
 function TelaLogin(){
     return (
