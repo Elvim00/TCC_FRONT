@@ -4,6 +4,7 @@ import { InputText } from 'primereact/inputtext';
 import { MdEmail, MdLock} from "react-icons/md";
 import { Button } from 'primereact/button';
 import axios from 'axios';
+import  { useHistory } from 'react-router-dom'
 
 var usuario;
 var senha;
@@ -19,14 +20,20 @@ async function ValidaUsuario (){
 
   const headers = {
     "Content-Type": "application/json",
-    "Login": {usuario},
-    "senha": {senha}
-  };
+    "login": usuario, 
+    "senha": senha
+    };
+
   const url = "/ValidarUsuario";
 
     axios.get(url, {headers})
     .then((response) => {
-      console.log(response.data[0].usuario_id)
+      
+      if (response.data.length === 0 ){
+        alert('teste')
+      }else{
+        alert('foi')
+      }
   //    console.log(event.target.usuario.value)
      // console.log({senha})
     //  if (response.data.usuario_id = 1) {
@@ -43,7 +50,13 @@ async function ValidaUsuario (){
 }  
 
 
-function login (){ 
+function Login (){ 
+
+  let history = useHistory();
+
+  function CadastrarUsuario() {
+    history.push("/cadastro-usuario");
+  }  
   
      
     return (        
@@ -63,7 +76,7 @@ function login (){
                 <InputText                   
                   type = 'text'                  
                   placeholder = 'Digite um usuario'  
-                  onKeyDown={(e) => preencherUsuario(e.target.value)}
+                  onChange={(e) => preencherUsuario(e.target.value)}
                 />                    
               </div>   
 
@@ -72,7 +85,7 @@ function login (){
                 <InputText                   
                     type = 'text'                    
                     placeholder = 'Digite uma senha'
-                    onKeyDown={(e) => preencherSenha(e.target.value)}
+                    onChange={(e) => preencherSenha(e.target.value)}
                     />                                      
                     
               </div>    
@@ -87,7 +100,9 @@ function login (){
               </Button>   
 
               <h4>Não tenho conta!</h4>    
-              <Button type = "submit"> 
+              <Button 
+                type = "submit"
+                onClick={CadastrarUsuario}> 
                 Cadastrar
               </Button>                  
                 
@@ -97,4 +112,4 @@ function login (){
         
     )
 }
-export default login;
+export default Login;

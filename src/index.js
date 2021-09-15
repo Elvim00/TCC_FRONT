@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import TelaLogin from './Pages/Login/login';
+import GerenciadorRotas from './Pages/gerenciadorRotas';
 
 ReactDOM.render(
   <div>
-    <TelaLogin/>
+    <GerenciadorRotas />
   </div>,
   document.getElementById('root')
 );
