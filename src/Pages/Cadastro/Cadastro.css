@@ -1,5 +1,5 @@
 .Principal{
-    padding-top: 140px;
+    padding-top: 100px;
 }
 .p-col img{
     width: 300px;
@@ -17,4 +17,8 @@
         margin-top: 5px;
         border: nome;
       
+}
+
+.p-dropdown {
+  width: 14rem;
 }

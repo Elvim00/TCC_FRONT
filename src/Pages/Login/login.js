@@ -5,6 +5,7 @@ import { MdEmail, MdLock} from "react-icons/md";
 import { Button } from 'primereact/button';
 import axios from 'axios';
 import  { useHistory } from 'react-router-dom'
+import {Password} from 'primereact/password';
 
 var usuario;
 var senha;
@@ -28,19 +29,11 @@ async function ValidaUsuario (){
 
     axios.get(url, {headers})
     .then((response) => {
-      
-      if (response.data.length === 0 ){
-        alert('teste')
-      }else{
-        alert('foi')
+      if (response.status === 200){
+        window.sessionStorage.usuario = response.data[0].usuario_id;
+        window.location.href ='/Principal'
       }
-  //    console.log(event.target.usuario.value)
-     // console.log({senha})
-    //  if (response.data.usuario_id = 1) {
-   //     alert('OK')
-   //   } else {
-   //     alert('Erro')
-   //   }
+      
       
     }).catch((error) => {
         alert("Ocorreu um erro ao buscar os items" + error);
@@ -82,7 +75,7 @@ function Login (){
 
               <div className = "login-senha"> 
                 <MdLock/>
-                <InputText                   
+                <Password                   
                     type = 'text'                    
                     placeholder = 'Digite uma senha'
                     onChange={(e) => preencherSenha(e.target.value)}

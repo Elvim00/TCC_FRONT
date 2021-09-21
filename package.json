@@ -15,10 +15,11 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-icons": "^4.2.0",
-    "react-router-dom": "^5.2.1",
+    "react-router-dom": "^5.3.0",
     "react-scripts": "4.0.3",
+    "react-select": "^4.3.1",
     "react-transition-group": "^4.4.2",
-    "sass": "^1.41.0",
+    "sass": "^1.41.1",
     "web-vitals": "^1.1.2"
   },
   "scripts": {
@@ -45,7 +46,7 @@
       "last 1 chrome version",
       "last 1 firefox version",
       "last 1 safari version"
-    ],
-    "proxy": "http://localhost:8080"
-  }
+    ]
+  },
+  "proxy": "http://localhost:8080"
 }

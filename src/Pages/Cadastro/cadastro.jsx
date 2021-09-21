@@ -5,26 +5,52 @@ import { InputMask } from 'primereact/inputmask';
 import 'primeflex/primeflex.css';
 import { Button } from 'primereact/button';
 import {Password} from 'primereact/password';
+import axios from 'axios';
+
+  
 
 class Cadastro extends React.Component {        
+  
   constructor(props) {
-    super(props);
+    super(props);    
     this.state = {              
-            nome: '',
+            nome: '',          
             telefone: '',
-            tipoDocumento: '',
+            tipo_documento: 'CPF',
             documento: '',
             email: '',
-            sexo: '',
-            dataCadastro: 0,
+            sexo: 'M', 
+            tipo_usario: '',         
             login: '',
-            senha: '',                            
-          mascaraDocumento: '999.999.999-99'       
+            senha: '',
+            isFuncionario: false,
+            isCliente: false,
+            cargo_id: null,
+            nome_empresa: '',
+            status: 'A',                            
+          mascaraDocumento: '999.999.999-99',
+          cargo: []
         }}  
+        
+        componentDidMount() {          
+          axios.get("/Cargos")
+          .then((response) => {
+            if (response.status === 200){
+              this.state.cargo.push()
+              this.setState({cargo: response.data})              
+          }
+        
+      })}   
 
-    render() {   
-        const CadastrarUsuario = () =>{  
+      preenhcerComboCargo() {        
+        return this.state.cargo.map(obj =>{
+          return <option value={obj.cargo_id}>{obj.descricao}</option>
+        })
+      }      
           
+
+    render() {         
+        const CadastrarUsuario = () =>{                      
           if (!this.state.nome){
             alert('E necessário preencher o nome!')                       
             return
@@ -53,25 +79,50 @@ class Cadastro extends React.Component {
           if (!this.state.senha){
             alert('E necessário preencher a senha!') 
             return
-          }                   
+          }                        
 
-         //gravar usuario
+          console.log(this.state)
+          axios.post('/Usuarios',  this.state )
+            .then(res => {
+              if (res.status === 201){
+                alert('Usuario criado com sucesso!');                
+                window.location.href ='/'
+                
+              }
+            } ).catch((error) => {
+              alert("Ocorreu um erro ao tentar cadastrar o usuaario" + error);
+          });            
 
-        }              
-      
 
-        const OnchangeTipoDocumento = e => {
-          console.log(this.state.nome)
-            this.setState({tipoDocumento: e.target.value}) 
+        }                      
+
+        const OnchangeTipoDocumento = e => {               
+            this.setState({tipo_documento: e.target.value}) 
                         
             if (e.target.value === 'CPF' ){
               this.setState({mascaraDocumento: '999.999.999-99'})              
             }else{
               this.setState({mascaraDocumento: '99.999.999/9999-99'})              
             }
+          }    
+          
+        const OnchangeTipoUsuario = e => {
+          this.setState({tipo_usario: e.target.value})
+
+          if (e.target.value === 'C'){
+            this.setState({isCliente: true})
+            this.setState({cargo_id: null})
+            this.setState({isFuncionario: false})
+          }
+          else{
+            this.setState({isFuncionario: true})
+            this.setState({nome_empresa: ''})
+            this.setState({isCliente: false})            
+          }
         }
     
-        return (            
+        return (         
+                    
           
             <div className = "Principal" > 
             <div className = 'p-field p-grid'>
@@ -98,7 +149,7 @@ class Cadastro extends React.Component {
                 <div className = 'p-field p-grid'>
                   <label htmlFor="Documento" className = 'p-col-fixed' style={{width:'100px'}}>Documento:</label>
                   <div className= "p-col">
-                    <select className='Selecao-TipoDocumento' value={this.state.tipoDocumento} onChange={(e) => OnchangeTipoDocumento(e)}>
+                    <select className='Selecao-TipoDocumento' value={this.state.tipo_documento} onChange={(e) => OnchangeTipoDocumento(e)}>
                       <option value="CPF">CPF</option>
                       <option value="CNPJ">CNPJ</option>        
                     </select>
@@ -122,6 +173,37 @@ class Cadastro extends React.Component {
                   </select>
                 </div> 
                 </div> 
+
+                <div className = 'p-field p-grid'>                                  
+                <label htmlFor="TIPO_USUARIO" className="p-col-fixed" style={{ width:'100px'}}>Usuario:</label>                                
+                <div className="p-col">                                
+                  <select className='Selecao-tipo_usuario' value = {this.state.tipo_usuario} onChange={(e) => OnchangeTipoUsuario(e)}>  
+                    <option value=""></option>
+                    <option value="F">Funcionario</option>
+                    <option value="C">Cliente</option>        
+                  </select>
+                </div> 
+                </div> 
+
+                { this.state.tipo_usario === 'F' &&(
+                <div className = 'p-field p-grid' >                                  
+                <label htmlFor="Cargo" className="p-col-fixed" style={{width:'100px'}}>Cargo:</label>                                
+                <div className="p-col"> 
+                <select value={this.state.cargo_id} onChange={(e) => this.setState({cargo_id: e.target.value})}>
+                  {this.preenhcerComboCargo()}
+                </select>
+                </div> 
+                </div>                        
+                )}
+
+                { this.state.tipo_usario === 'C' &&(
+                <div className = 'p-field p-grid' >                                  
+                <label htmlFor="Cargo" className="p-col-fixed" style={{width:'100px'}}>Empresa:</label>                                
+                <div className="p-col"> 
+                <InputText id="empresa" type="text" size= '40' value = {this.state.nome_empresa} onChange={(e) => this.setState({nome_empresa: e.target.value})}/>
+                </div> 
+                </div>                        
+                )}                                
 
                 <div className = 'p-field p-grid'>                                  
                 <label htmlFor="Login" className="p-col-fixed" style={{width:'100px'}}>Login:</label>                                
