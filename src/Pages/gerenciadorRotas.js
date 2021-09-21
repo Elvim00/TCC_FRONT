@@ -10,8 +10,7 @@ function CarregarRota(){
         <BrowserRouter>
             <Switch>
                 <Route path="/" exact component={TelaLogin} />
-                <Route path="/cadastro-usuario" component={Cadastro} />    
-                <Route path="/Principal" component={Principal} />
+                <Route path="/cadastro-usuario" component={Cadastro} />                
             </Switch>        
         </BrowserRouter>
     );
