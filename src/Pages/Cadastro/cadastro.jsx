@@ -125,59 +125,53 @@ class Cadastro extends React.Component {
                     
           
             <div className = "Principal" > 
-            <div className = 'p-field p-grid'>
-            <div className = "p-col">
-                <img src = "https://cdn2.iconfinder.com/data/icons/web-technology-outline/100/outline_user_person_people_usuario-256.png" alt =''/>
+            <div className = 'p-field p-grid' style={{position:'Center'}}>
+            <div className = "p-col" >
+                <img  src = "https://cdn2.iconfinder.com/data/icons/web-technology-outline/100/outline_user_person_people_usuario-256.png" alt =''/>
             </div>                      
             <div className = "p-col">               
                 <h1>Cadastro Usuario</h1>  
 
-                <div className = 'p-field p-grid'>                                  
-                <label htmlFor="Nome" className="p-col-fixed" style={{width:'100px'}}>Nome:</label>                                
-                <div className="p-col">                                
-                <InputText id="Nome" type="text"  ref='nometeste'  value = {this.state.nome} onChange={(e) => this.setState({nome: e.target.value})}/>
+                <div className = 'p-field p-grid' style={{paddingRight:'400px', position:'center'}} >                                                  
+                <div className="p-col" >                                
+                <InputText style={{width:'290px'}} type = 'text' placeholder = 'Digite Nome' id="Nome"   type="text"  ref='nometeste'  value = {this.state.nome} onChange={(e) => this.setState({nome: e.target.value})}/>
                 </div> 
                 </div>
 
-                <div className = 'p-field p-grid'>                                  
-                <label htmlFor="Telefone" className="p-col-fixed" style={{width:'100px'}}>Telefone:</label>                                
+                <div className = 'p-field p-grid'>                                                  
                 <div className="p-col">                                
-                <InputMask mask="(99)-9 9999-9999"  value = {this.state.telefone} onChange={(e) => this.setState({telefone: e.target.value})}/>
+                <InputMask style={{width:'290px'}} type = 'text' placeholder = 'Digite Telefone' mask="(99)-9 9999-9999"  value = {this.state.telefone} onChange={(e) => this.setState({telefone: e.target.value})}/>
                 </div>                                                                           
                 </div>    
 
-                <div className = 'p-field p-grid'>
-                  <label htmlFor="Documento" className = 'p-col-fixed' style={{width:'100px'}}>Documento:</label>
-                  <div className= "p-col">
-                    <select className='Selecao-TipoDocumento' value={this.state.tipo_documento} onChange={(e) => OnchangeTipoDocumento(e)}>
+                <div className = 'p-field p-grid'>                  
+                  <div className= "p-col">                  
+                    <select  style={{height:'30px', width: '70px', marginRight:'10px'}} className='Selecao-TipoDocumento' value={this.state.tipo_documento} onChange={(e) => OnchangeTipoDocumento(e)}>
                       <option value="CPF">CPF</option>
                       <option value="CNPJ">CNPJ</option>        
-                    </select>
-                    <InputMask className="Documento" mask={this.state.mascaraDocumento}  value = {this.state.documento} onChange={(e) => this.setState({documento: e.target.value})}/>                     
+                    </select>                    
+                    <InputMask style={{ width:'210px'}} className='Documento' mask={this.state.mascaraDocumento}  value = {this.state.documento} onChange={(e) => this.setState({documento: e.target.value})}/>                                       
                   </div>
                 </div> 
 
-                <div className = 'p-field p-grid'>                                  
-                <label htmlFor="Email" className="p-col-fixed" style={{width:'100px'}}>Email:</label>                                
+                <div className = 'p-field p-grid'>                                                
                 <div className="p-col">                                
-                <InputText id="Email" type="text" size= '40' value = {this.state.email} onChange={(e) => this.setState({email: e.target.value})}/>
+                <InputText style={{width:'290px'}} placeholder = 'Digite Email' id="Email" type="text" size= '40' value = {this.state.email} onChange={(e) => this.setState({email: e.target.value})}/>
                 </div> 
                 </div> 
 
-                <div className = 'p-field p-grid'>                                  
-                <label htmlFor="Sexo" className="p-col-fixed" style={{width:'100px'}}>Sexo:</label>                                
+                <div className = 'p-field p-grid'>                                                  
                 <div className="p-col">                                
-                  <select className='Selecao-Sexo' value = {this.state.sexo} onChange={(e) => this.setState({sexo: e.target.value})}>
+                  <select style={{height:'30px', width: '100px'}} value = {this.state.sexo} onChange={(e) => this.setState({sexo: e.target.value})}>
                     <option value="M">Masculino</option>
                     <option value="F">Feminino</option>        
                   </select>
                 </div> 
                 </div> 
 
-                <div className = 'p-field p-grid'>                                  
-                <label htmlFor="TIPO_USUARIO" className="p-col-fixed" style={{ width:'100px'}}>Usuario:</label>                                
+                <div className = 'p-field p-grid'>                                                  
                 <div className="p-col">                                
-                  <select className='Selecao-tipo_usuario' value = {this.state.tipo_usuario} onChange={(e) => OnchangeTipoUsuario(e)}>  
+                  <select style={{height:'30px', width: '100px'}} value = {this.state.tipo_usuario} onChange={(e) => OnchangeTipoUsuario(e)}>  
                     <option value=""></option>
                     <option value="F">Funcionario</option>
                     <option value="C">Cliente</option>        
@@ -186,10 +180,9 @@ class Cadastro extends React.Component {
                 </div> 
 
                 { this.state.tipo_usario === 'F' &&(
-                <div className = 'p-field p-grid' >                                  
-                <label htmlFor="Cargo" className="p-col-fixed" style={{width:'100px'}}>Cargo:</label>                                
+                <div className = 'p-field p-grid' >                                                  
                 <div className="p-col"> 
-                <select value={this.state.cargo_id} onChange={(e) => this.setState({cargo_id: e.target.value})}>
+                <select style={{height:'30px', width: '290px'}} value={this.state.cargo_id} onChange={(e) => this.setState({cargo_id: e.target.value})}>
                   {this.preenhcerComboCargo()}
                 </select>
                 </div> 
@@ -197,31 +190,27 @@ class Cadastro extends React.Component {
                 )}
 
                 { this.state.tipo_usario === 'C' &&(
-                <div className = 'p-field p-grid' >                                  
-                <label htmlFor="Cargo" className="p-col-fixed" style={{width:'100px'}}>Empresa:</label>                                
+                <div className = 'p-field p-grid' >                                                
                 <div className="p-col"> 
-                <InputText id="empresa" type="text" size= '40' value = {this.state.nome_empresa} onChange={(e) => this.setState({nome_empresa: e.target.value})}/>
+                <InputText placeholder = 'Digite Nome Empresa' id="empresa" type="text" size= '40' value = {this.state.nome_empresa} onChange={(e) => this.setState({nome_empresa: e.target.value})}/>
                 </div> 
                 </div>                        
                 )}                                
 
-                <div className = 'p-field p-grid'>                                  
-                <label htmlFor="Login" className="p-col-fixed" style={{width:'100px'}}>Login:</label>                                
+                <div className = 'p-field p-grid'>                                                  
                 <div className="p-col">                                
-                <InputText id="Login" type="text" value = {this.state.login} onChange={(e) => this.setState({login: e.target.value})}/>
+                <InputText style={{width:'290px'}} placeholder = 'Digite Login' id="Login" type="text" value = {this.state.login} onChange={(e) => this.setState({login: e.target.value})}/>
                 </div> 
                 </div>
 
-                <div className = 'p-field p-grid'>                                  
-                <label htmlFor="Senha" className="p-col-fixed" style={{width:'1px'}}>Senha:</label>                                
+                <div className = 'p-field p-grid'>                                                  
                 <div className="p-col">                                
-                <Password  feedback={false} toggleMask value = {this.state.senha} onChange={(e) => this.setState({senha: e.target.value})}/>
+                <Password size='37' placeholder = 'Digite Senha'  feedback={false} toggleMask value = {this.state.senha} onChange={(e) => this.setState({senha: e.target.value})}/>
                 </div> 
                 </div>                                
-
-                <div className = 'p-field p-grid'>     
-                  <Button  type = "submit"  icon="pi pi-check"  className="button" onClick={CadastrarUsuario}> Cadastrar </Button>                                                                          
-                </div>  
+                <div className = 'p-field p-grid' style={{paddingLeft:'7px'}}>     
+                  <Button  type = "submit"  style={{height:'30px', width: '250px', background: '#121214'}} onClick={CadastrarUsuario}> Cadastrar </Button>                                                                          
+                </div>                  
 
             </div>    
             </div>

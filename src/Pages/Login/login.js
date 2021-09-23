@@ -60,7 +60,7 @@ function Login (){
             <div className = "login-logo">
                 <img src = "https://software.muz.ifsuldeminas.edu.br/balanced_diet_v2/assets/img/login.png" alt =''/>
             </div>                        
-            <div className = "login-componente"> 
+            <div className = "login-componente" style={{ paddingLeft: '60px' }}> 
               <h1>Acesso ao sistema</h1>
 
               
@@ -75,9 +75,7 @@ function Login (){
 
               <div className = "login-senha"> 
                 <MdLock/>
-                <Password                   
-                    type = 'text'                    
-                    placeholder = 'Digite uma senha'
+                <Password size='50' placeholder = 'Digite Senha'  feedback={false} toggleMask                                                                                   
                     onChange={(e) => preencherSenha(e.target.value)}
                     />                                      
                     
@@ -85,8 +83,7 @@ function Login (){
              
 
               <Button 
-              type = "submit" 
-              icon="pi pi-check"
+              type = "submit"                             
               onClick={ValidaUsuario}
               >
                 Entrar

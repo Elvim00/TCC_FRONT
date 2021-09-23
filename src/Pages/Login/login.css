@@ -79,24 +79,19 @@
 }
 
 .login-componente button{
-  width: 98%;
-  background-color: #121214;
-  color: #eff2f5;
-  font-weight: 800;
-  height: 50px;
-  border-radius: 5px;
-  font-size: 18px;
-  margin-top: 5px;
-  border: nome;
-}
+    width: 98%;
+    background-color: #121214;
+    color: #eff2f5;
+    font-weight: 800;
+    height: 60px;
+    border-radius: 5px;
+    font-size: 18px;
+    margin-top: 5px;
+    border: nome;
+  }
 
 .login-componente button:hover{
     background-color: #171719;
     color: #eff2f5;
     cursor: pointer;
 }
-
-body {   
-    background-color: #444;
-    color: #fff;    
-  }

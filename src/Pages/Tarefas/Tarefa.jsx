@@ -84,8 +84,7 @@ class Tarefa extends React.Component {
           
                
                     <h5>Default</h5>
-                     <textEditor height="300" />
-               
+                     <Editor></Editor>               
           
 
 
