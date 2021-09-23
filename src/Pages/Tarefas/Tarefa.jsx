@@ -5,6 +5,7 @@ import axios from 'axios';
 import './Tarefa.css'
 import { Button } from 'primereact/button';
 import { Editor } from 'primereact/editor';
+import { Calendar } from 'primereact/calendar';
 
 
   
@@ -47,10 +48,28 @@ class Tarefa extends React.Component {
     render() {             
         return(
         <div>             
+          <div className="p-fluid p-formgrid p-grid">        
+            <div className="p-field p-col">          
+              <label htmlFor="Descricao"> Solicitação</label>                                                      
+              <InputText type="text"  readOnly value = {this.state.dadosTarefa.nome_responsavel}/>
+            </div> 
+
+            <div className="p-field p-col">          
+              <label htmlFor="DataEntrega"> Data Entrega</label>                                                      
+              <Calendar id="basic"/>
+            </div> 
+
+            <div className="p-field p-col">          
+              <label htmlFor="TempoGasto"> Tempo Gasto</label>                                                      
+              <InputText type="Time" />
+            </div> 
+
+          </div>
+
           <div className="p-fluid p-formgrid p-grid">
                     
             <div className="p-field p-col">                        
-              <select  className="Tarefas" value={this.state.tarefa_id} onChange={(e) => this.setState({tarefa_id: e.target.value})}>
+              <select  style={{height:'30px'}} value={this.state.tarefa_id} onChange={(e) => this.setState({tarefa_id: e.target.value})}>
                 {this.preenhcerComboTarefa()}
               </select>
             </div>                    
@@ -73,23 +92,29 @@ class Tarefa extends React.Component {
             </div> 
 
             <div className="p-field p-col">          
-            <Button  type = "submit"> Iniciar Tempo</Button>                                                                                      
+            <Button  type = "submit" style={{height:'35px'}}> Iniciar Tempo</Button>                                                                                      
             </div>
 
             <div className="p-field p-col">          
-            <Button  type = "submit"> Iniciar Tempo</Button>                                                                                      
+            <Button  type = "submit" style={{height:'35px'}}> Parar Tempo</Button>                                                                                      
             </div>            
 
+          </div>                                             
+            <Editor style={{ height: '300px' }}></Editor> 
+
+            <div className="p-fluid p-formgrid p-grid">        
+            <div className="p-field p-col">          
+            <Button  type = "submit" style={{height:'40px', background: '#121214'}} > Voltar</Button>                                                                                      
+            </div> 
+
+            <div className="p-field p-col">          
+            <Button  type = "submit" style={{height:'40px', background: '#121214'}}> Nova Tarefa</Button>                                                                                      
+            </div> 
+
+          </div>                                       
           </div>
+
           
-               
-                    <h5>Default</h5>
-                     <Editor></Editor>               
-          
-
-
-
-        </div>
         )
     }}
 
