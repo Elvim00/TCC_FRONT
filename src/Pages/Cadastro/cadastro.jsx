@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { InputText } from 'primereact/inputtext';
 import './Cadastro.css'
 import { InputMask } from 'primereact/inputmask';
@@ -213,7 +213,7 @@ class Cadastro extends React.Component {
                 </div>
 
                 <div className = 'p-field p-grid'>                                  
-                <label htmlFor="Senha" className="p-col-fixed" style={{width:'100px'}}>Senha:</label>                                
+                <label htmlFor="Senha" className="p-col-fixed" style={{width:'1px'}}>Senha:</label>                                
                 <div className="p-col">                                
                 <Password  feedback={false} toggleMask value = {this.state.senha} onChange={(e) => this.setState({senha: e.target.value})}/>
                 </div> 
