@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './login.css'
 import { InputText } from 'primereact/inputtext';
 import { MdEmail, MdLock} from "react-icons/md";

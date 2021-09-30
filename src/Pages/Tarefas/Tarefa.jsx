@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import 'primeflex/primeflex.css';
 import { InputText } from 'primereact/inputtext';
 import axios from 'axios';

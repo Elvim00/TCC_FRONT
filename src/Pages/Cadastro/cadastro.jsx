@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { InputText } from 'primereact/inputtext';
 import './Cadastro.css'
 import { InputMask } from 'primereact/inputmask';
@@ -134,7 +134,7 @@ class Cadastro extends React.Component {
 
                 <div className = 'p-field p-grid' style={{paddingRight:'400px', position:'center'}} >                                                  
                 <div className="p-col" >                                
-                <InputText style={{width:'290px'}} type = 'text' placeholder = 'Digite Nome' id="Nome"   type="text"  ref='nometeste'  value = {this.state.nome} onChange={(e) => this.setState({nome: e.target.value})}/>
+                <InputText style={{width:'290px'}} type = 'text' placeholder = 'Digite Nome' id="Nome"   value = {this.state.nome} onChange={(e) => this.setState({nome: e.target.value})}/>
                 </div> 
                 </div>
 
