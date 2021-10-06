@@ -79,9 +79,7 @@ class Cadastro extends React.Component {
           if (!this.state.senha){
             alert('E necessário preencher a senha!') 
             return
-          }                        
-
-          console.log(this.state)
+          }                                  
           axios.post('/Usuarios',  this.state )
             .then(res => {
               if (res.status === 201){
@@ -90,7 +88,7 @@ class Cadastro extends React.Component {
                 
               }
             } ).catch((error) => {
-              alert("Ocorreu um erro ao tentar cadastrar o usuaario" + error);
+              alert("Ocorreu um erro ao tentar cadastrar o usuario" + error);
           });            
 
 

@@ -8,6 +8,7 @@ import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 //import Geral from '../../Componentes/Geral';
 import Geral from '../Componentes/Geral';
+import axios from 'axios';
 
 class Principal extends Component {
 
@@ -15,11 +16,22 @@ class Principal extends Component {
         super(props);
         this.state = {
             visibleLeft: false,
-            products: [{ 
-              "code": "teste",
-              "name": "nome_teste" }],
+            products: [],
             selectedProduct1: null,
         };
+    }
+
+    componentDidMount() {          
+      axios.get("/TarefasUsuario/"+ window.sessionStorage.usuario)
+      .then((response) => {
+        if (response.status === 200){
+          console.log(response.data)
+          this.state.etapas.push()
+          this.setState({products: response.data})                        
+        }        
+      })
+      
+
     }
 
     render() {
