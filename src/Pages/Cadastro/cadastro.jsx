@@ -116,6 +116,7 @@ class Cadastro extends React.Component {
             this.setState({isFuncionario: true})
             this.setState({nome_empresa: ''})
             this.setState({isCliente: false})            
+            this.setState({cargo_id: 1})               
           }
         }
     

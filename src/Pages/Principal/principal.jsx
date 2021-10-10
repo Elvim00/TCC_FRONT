@@ -9,6 +9,7 @@ import { Column } from 'primereact/column';
 //import Geral from '../../Componentes/Geral';
 import Geral from '../Componentes/Geral';
 import axios from 'axios';
+import dateFormat from 'dateformat';
 
 class Principal extends Component {
 
@@ -16,18 +17,23 @@ class Principal extends Component {
         super(props);
         this.state = {
             visibleLeft: false,
-            products: [],
-            selectedProduct1: null,
+            tarefas: [],
+            tarefaSelecionada: null,
         };
     }
 
-    componentDidMount() {          
-      axios.get("/TarefasUsuario/"+ window.sessionStorage.usuario)
+    componentDidMount() {    
+      const headers = {
+        "Content-Type": "application/json",
+        "usuario_id": window.sessionStorage.usuario,         
+        };          
+      
+      
+      axios.get("/TarefasUsuario", {headers})
       .then((response) => {
-        if (response.status === 200){
-          console.log(response.data)
-          this.state.etapas.push()
-          this.setState({products: response.data})                        
+        if (response.status === 200){        
+          this.state.tarefas.push()
+          this.setState({tarefas: response.data})                        
         }        
       })
       
@@ -36,16 +42,23 @@ class Principal extends Component {
 
     render() {
 
+      const preencherTrafa=()=>{                        
+        window.sessionStorage.tarefa_id = this.state.tarefaSelecionada.tarefa_id;
+        window.sessionStorage.solcitacao_id = this.state.tarefaSelecionada.solicitacao.solicitacao_id
+        window.location.href ='/Tarefa'        
+        
+      }      
+
         return (
                 <div>
                   <Geral/>
 
                     <div className="Card">
                       <h3>Tarefas Vinculadas à você</h3>
-                      <DataTable  value={this.state.products} selectionMode="single" selection={this.state.selectedProduct1} onSelectionChange={e => this.setState({ selectedProduct1: e.value })} dataKey="id">
-                        <Column field="descricao" header="Descrição"></Column>
-                        <Column field="tempo_gasto" header="Tempo gasto"></Column>
-                        <Column field="data_entrega" header="data_entrega"></Column>                        
+                      <DataTable   value={this.state.tarefas} selectionMode="single" selection={this.state.tarefaSelecionada} onSelectionChange={e => this.setState({ tarefaSelecionada: e.value })} onRowDoubleClick={ preencherTrafa} dataKey="id">
+                        <Column field ="solicitacao.descricao" header="Descrição"></Column>
+                        <Column field = "tempo_gasto" header="Tempo gasto"></Column>
+                        <Column type = "date" field ="data_entrega" header="data_entrega"></Column>                        
                       </DataTable>                       
                     </div>                                     
                 </div>

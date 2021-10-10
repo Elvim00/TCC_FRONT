@@ -36,7 +36,7 @@ async function ValidaUsuario (){
       
       
     }).catch((error) => {
-        alert("Ocorreu um erro ao buscar os items" + error);
+        alert("Usuario não cadastrado");
     });   
     
     
